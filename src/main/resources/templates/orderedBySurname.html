@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Phonebook Home</title>
+
+<link rel="stylesheet" th:src="@{js/script.js}"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+
+
+
+
+</head>
+<body>
+	<div class="container bg-light">
+
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarText" aria-controls="navbarText"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarText">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><a class="nav-link" th:href="@{/}">Home
+							<span class="sr-only">(current)</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/showNewContactForm}">Create contact</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/bySurname}">Contacts ordered by Surname </a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/filteredByPhone}">Contacts Filtered by number</a></li>
+				</ul>
+			</div>
+		</nav>
+
+	</div>
+
+	<div class="container my-2">
+		<br>
+		
+
+
+		<table border="1" class="table table-striped table-responsive-md">
+			<thead>
+				<tr>
+					<th><a
+						th:href="@{'/page/' + ${currentPage} + '?sortField=surname&sortDir=' + ${reverseSortDir}}">Surname</a></th>
+					<th><a
+						th:href="@{'/page/' + ${currentPage} + '?sortField=name&sortDir=' + ${reverseSortDir}}">Name</a></th>
+					<th><a
+						th:href="@{'/page/' + ${currentPage} + '?sortField=address.street&sortDir=' + ${reverseSortDir}}">Street</a></th>
+					<th><a
+						th:href="@{'/page/' + ${currentPage} + '?sortField=address.city&sortDir=' + ${reverseSortDir}}">City</a></th>
+					<th><a
+						th:href="@{'/page/' + ${currentPage} + '?sortField=address.zip&sortDir=' + ${reverseSortDir}}">Zip</a></th>
+					<th><a
+						th:href="@{'/page/' + ${currentPage} + '?sortField=phoneNumber&sortDir=' + ${reverseSortDir}}">Phone
+							Number</a></th>
+					<th><a>Action</a></th>
+				</tr>
+
+
+			</thead>
+			<tbody>
+				<tr th:each="contact : ${listContacts}">
+					<td th:text="${contact.surname}"></td>
+					<td th:text="${contact.name}"></td>
+					<td th:text="${contact.address.street}"></td>
+					<td th:text="${contact.address.city}"></td>
+					<td th:text="${contact.address.zip}"></td>
+					<td th:text="${contact.phoneNumber}"></td>
+					<td><a
+						th:href="@{/showUpdateContactForm/{id}(id=${contact.id})}"
+						class="btn btn-info">Update</a> <a
+						th:href="@{/deleteContact/{id}(id=${contact.id})}"
+						class="btn btn-danger">Delete</a></td>
+
+
+				</tr>
+
+
+			</tbody>
+
+		</table>
+
+
+		<div th:if="${totalPages > 1}">
+			<div class="row col-sm-10">
+				<div class="col-sm-2">Total Rows: [[${totalItems}]]</div>
+				<div class="col-sm-1">
+					<span th:each="i: ${#numbers.sequence(1, totalPages)}"> <a
+						th:if="${currentPage != i}"
+						th:href="@{'/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+						<span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp;
+						&nbsp;
+					</span>
+				</div>
+				<div class="col-sm-1">
+					<a th:if="${currentPage < totalPages}"
+						th:href="@{'/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+					<span th:unless="${currentPage < totalPages}">Next</span>
+				</div>
+
+				<div class="col-sm-1">
+					<a th:if="${currentPage < totalPages}"
+						th:href="@{'/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+					<span th:unless="${currentPage < totalPages}">Last</span>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Phonebook- Update Contact</title>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+
+</head>
+<body>
+
+	<div class="container bg-light">
+
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarText" aria-controls="navbarText"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarText">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><a class="nav-link" th:href="@{/}">Home
+							<span class="sr-only">(current)</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/createContact}">Create contact</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/shoppingCart}">Contacts ordered by Surname </a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/customer}">Contacts Filtered by number</a></li>
+				</ul>
+			</div>
+		</nav>
+
+	</div>
+
+
+	<div class="container my-2">
+		<br>
+		<br>
+		<h5>Update Contact</h5>
+
+
+		<form action="#" th:action="@{/createContact}" th:object="${contact}"
+			method="POST">
+
+
+			<table>
+				<tr>
+					<input type="hidden" th:field="*{id}">
+				</tr>
+				<tr>
+					<input type="text" th:field="*{name}" placeholder="Name"
+						class="form-control mb-4 col-4">
+				</tr>
+				<tr>
+					<input type="text" th:field="*{surname}" placeholder="Surname"
+						class="form-control mb-4 col-4">
+				</tr>
+				<tr>
+					<input type="text" th:field="*{address.street}"
+						placeholder="Street" class="form-control mb-4 col-4">
+				</tr>
+				<tr>
+					<input type="text" th:field="*{address.city}" placeholder="City"
+						class="form-control mb-4 col-4">
+				</tr>
+				<tr>
+					<input type="text" th:field="*{address.zip}" placeholder="Zip"
+						class="form-control mb-4 col-4">
+				</tr>
+				<tr>
+					<input type="text" th:field="*{phoneNumber}"
+						placeholder="phoneNumber" class="form-control mb-4 col-4">
+				</tr>
+
+				<button type="submit" class="btn btn-info">Update contact</button>
+			</table>
+
+		</form>
+
+
+		<a th:href="@{/}">Back to contact list</a>
+
+
+	</div>
+</body>
+</html>
