@@ -126,7 +126,7 @@ public class ContactController {
 		}
 	
 	
-	// delete customer
+	// delete contact
 	@GetMapping("/deleteContact/{id}")
 	public String deleteContact(@PathVariable("id")Integer id) {
 		contactRepo.deleteById(id);
@@ -162,7 +162,7 @@ public class ContactController {
 				
 				
 				//paging and sorting  for filter by phone number
-				@GetMapping("/page/{pageNo}/filterbyPhoneNumber")
+				@GetMapping("/page1/{pageNo}")
 				public String findPaginated2(@PathVariable (value = "pageNo") Integer pageNo, 
 						@RequestParam("sortField") String sortField,
 						@RequestParam("sortDir") String sortDir,

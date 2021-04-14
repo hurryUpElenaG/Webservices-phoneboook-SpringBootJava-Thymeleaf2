@@ -2,42 +2,74 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Phonebook Home</title>
+<title>Contact Details</title>
 
 <link rel="stylesheet" th:src="@{js/script.js}"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
+	
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+	href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap"
+	rel="stylesheet">
+	
 </head>
-<body>
-	<div class="container bg-light">
 
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<style>
+.navtext {
+	font-family: 'Merriweather', serif;
+	font-size: 14px;
+	text-align: justify;
+	/* font-weight: bold;*/
+}
+
+.foottext {
+	font-family: 'Merriweather', serif;
+	font-size: 12px;
+	text-align: justify;
+	/* font-weight: bold;*/
+}
+
+.content {
+    font-family: 'Merriweather', serif;
+	font-size: 12px;
+	/* font-weight: bold;*/
+}
+</style>
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-secondary navtext">
+		<div>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarText" aria-controls="navbarText"
 				aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse" id="navbarText">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link" th:href="@{/}">Home
-							<span class="sr-only">(current)</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/showNewContactForm}">Create contact</a></li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/bySurname}">Contacts ordered by Surname </a></li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/filteredByPhone}">Contacts Filtered by number</a></li>
-				</ul>
-			</div>
-		</nav>
+		</div>
+		
 
-	</div>
+		<div class="container collapse navbar-collapse" id="navbarText">
+			<ul class="navbar-nav">
+				<li class="nav-item active"><a class="nav-link" th:href="@{/}"><b>Home</b>
+						<span class="sr-only">(current)</span>
+				</a></li>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/showNewContactForm}"><b>Create contact</b></a></li>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/bySurname}"><b>Contacts ordered by Surname</b> </a></li>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/filteredByPhone}"><b>Contacts Filtered by number</b></a></li>
+			</ul>
+			<span class="navbar-text ml-auto navbar-dark">
+				<h4>Phonebook</h4>
+			</span>
+		</div>
+	</nav>
 
 
-	<div class="container">
-		<br>
+	<div class="container content">
+		<br><br>
 		<h6>Contact Details</h6>
 		<br>
 
@@ -76,4 +108,13 @@
 
 	</div>
 </body>
+
+<div>
+	<footer class="fixed-bottom">
+		<!-- Copyright -->
+		<div class="text-center bg-secondary text-dark p-3 foottext">&copy;
+			2020 Phonebook</div>
+		<!-- Copyright -->
+	</footer>
+</div>
 </html>
